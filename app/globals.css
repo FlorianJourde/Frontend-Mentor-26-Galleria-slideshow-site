@@ -33,6 +33,10 @@ body {
 } */
 
 .masonry-portfolio {
-column-gap: 5;
-column-count: 4;
+  column-count: 4;
+  column-gap: 20px;
+
+  >* {
+    margin-bottom: 20px;
+  }
 }
