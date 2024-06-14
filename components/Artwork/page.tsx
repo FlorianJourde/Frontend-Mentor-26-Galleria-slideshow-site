@@ -3,6 +3,7 @@ import artworks from "@/data/data.json";
 import { useSearchParams } from 'next/navigation'
 import resolveImagePath from '@/utils/resolveImagePath';
 import Footer from '../Footer/page';
+import { AnimatePresence } from 'framer-motion';
 
 export default function Artwork() {
   const searchParams = useSearchParams()
@@ -38,7 +39,6 @@ export default function Artwork() {
         </div>
       </div>
 
-      <Footer />
     </div>
   )
 }

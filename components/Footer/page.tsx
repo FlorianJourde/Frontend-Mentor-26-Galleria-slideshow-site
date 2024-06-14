@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import BackButtonLogo from '@/public/assets/shared/icon-back-button.svg'
 import NextButtonLogo from '@/public/assets/shared/icon-next-button.svg'
 import { useEffect } from 'react'
-import { useSearchParams } from 'next/navigation'
+import { usePathname, useSearchParams } from 'next/navigation'
 import artworks from "@/data/data.json";
 import Link from 'next/link'
 import convertToSlug from '@/utils/convertToSlug'
@@ -12,6 +12,7 @@ import convertToSlug from '@/utils/convertToSlug'
 export default function Footer() {
   const [artworkPage, setArtworkPage] = useState<number>()
   const searchParams = useSearchParams()
+  const pathname = usePathname();
 
   useEffect(() => {
     if (searchParams !== null) {
@@ -83,33 +84,36 @@ export default function Footer() {
     }
   }
 
-  return (
-    <footer className='fixed w-full bg-white bottom-0 flex py-8 justify-between items-center border-t-2'>
+  if (pathname !== null && pathname.startsWith("/artworks")) {
+    return (
+      <footer className='fixed w-full bg-white bottom-0 flex py-8 justify-between items-center border-t-2'>
 
-      {progressBar()}
+        {progressBar()}
 
-      <div className="wrapper">
-        <div className='flex justify-between items-center gap-10 w-full'>
-          <div className="title flex flex-col gap-2">
-            <h2 className='font-bold tracking-widest text-xl font-libre-baskerville'>
-              {artworkPage !== undefined && artworks[artworkPage].name}
-            </h2>
-            <h3 className='opacity-50 font-bold tracking-widest text-sm font-libre-baskerville'>
-              {artworkPage !== undefined && artworks[artworkPage].artist.name}
-            </h3>
-          </div>
+        <div className="wrapper">
 
-          {artworkPage !== undefined &&
-            <div className='buttons-container flex gap-12'>
-
-              {getPreviousArtwork()}
-              {getNextArtwork()}
-
+          <div className='flex justify-between items-center gap-10 w-full'>
+            <div className="title flex flex-col gap-2">
+              <h2 className='font-bold tracking-widest text-xl font-libre-baskerville'>
+                {artworkPage !== undefined && artworks[artworkPage].name}
+              </h2>
+              <h3 className='opacity-50 font-bold tracking-widest text-sm font-libre-baskerville'>
+                {artworkPage !== undefined && artworks[artworkPage].artist.name}
+              </h3>
             </div>
-          }
 
+            {artworkPage !== undefined &&
+              <div className='buttons-container flex gap-12'>
+
+                {getPreviousArtwork()}
+                {getNextArtwork()}
+
+              </div>
+            }
+
+          </div>
         </div>
-      </div>
-    </footer>
-  )
+      </footer>
+    )
+  }
 }
