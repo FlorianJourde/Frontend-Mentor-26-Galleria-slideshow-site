@@ -7,9 +7,7 @@ export default function Home() {
 
   return (
     <main>
-      <div className="wrapper">
         <Portfolio />
-      </div>
     </main >
   );
 }

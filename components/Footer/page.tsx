@@ -5,7 +5,7 @@ import BackButtonLogo from '@/public/assets/shared/icon-back-button.svg'
 import NextButtonLogo from '@/public/assets/shared/icon-next-button.svg'
 import { useEffect } from 'react'
 import { useSearchParams } from 'next/navigation'
-import Artworks from "@/data/data.json";
+import artworks from "@/data/data.json";
 import Link from 'next/link'
 import convertToSlug from '@/utils/convertToSlug'
 
@@ -33,7 +33,7 @@ export default function Footer() {
         return (
           <Link
             href={{
-              pathname: `/artworks/${convertToSlug(Artworks[previousArtwork].name)}`,
+              pathname: `/artworks/${convertToSlug(artworks[previousArtwork].name)}`,
               query: { id: artworkPage - 1 },
             }}>
             <BackButtonLogo />
@@ -53,11 +53,11 @@ export default function Footer() {
     if (artworkPage !== undefined) {
       const nextArtwork = artworkPage + 1
 
-      if (artworkPage < (Artworks.length - 1)) {
+      if (artworkPage < (artworks.length - 1)) {
         return (
           <Link
             href={{
-              pathname: `/artworks/${convertToSlug(Artworks[nextArtwork].name)}`,
+              pathname: `/artworks/${convertToSlug(artworks[nextArtwork].name)}`,
               query: { id: artworkPage + 1 },
             }}>
             <NextButtonLogo />
@@ -92,19 +92,19 @@ export default function Footer() {
         <div className='flex justify-between items-center gap-10 w-full'>
           <div className="title flex flex-col gap-2">
             <h2 className='font-bold tracking-widest text-xl font-libre-baskerville'>
-              Title
+              {artworkPage !== undefined && artworks[artworkPage].name}
             </h2>
             <h3 className='opacity-50 font-bold tracking-widest text-sm font-libre-baskerville'>
-              Artist
+              {artworkPage !== undefined && artworks[artworkPage].artist.name}
             </h3>
           </div>
 
           {artworkPage !== undefined &&
             <div className='buttons-container flex gap-12'>
-              
+
               {getPreviousArtwork()}
               {getNextArtwork()}
-              
+
             </div>
           }
 

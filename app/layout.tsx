@@ -22,7 +22,7 @@ export default function RootLayout({
       <body className={`${inter.className} ${libreBaskerville.variable} min-h-svh overflow-x-hidden`}>
         <Header />
         {children}
-        <Footer />
+        {/* <Footer /> */}
       </body>
     </html>
   );
