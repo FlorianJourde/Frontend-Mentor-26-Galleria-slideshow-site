@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Libre_Baskerville } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header/page";
 import Footer from "@/components/Footer/page";
 
 const inter = Inter({ subsets: ["latin"] });
+const libreBaskerville = Libre_Baskerville({ subsets: ["latin"], weight: ['400', '700'], variable: '--font-baskerville' });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -18,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${inter.className} ${libreBaskerville.variable} min-h-svh overflow-x-hidden`}>
         <Header />
         {children}
         <Footer />
