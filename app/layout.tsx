@@ -6,6 +6,7 @@ import Footer from "@/components/Footer/page";
 import { AnimatePresence } from 'framer-motion';
 import { useRouter } from "next/router";
 import { usePathname } from "next/navigation";
+import { PageIdProvider } from "@/contexts/PageIdContext";
 
 const inter = Inter({ subsets: ["latin"] });
 const libreBaskerville = Libre_Baskerville({ subsets: ["latin"], weight: ['400', '700'], variable: '--font-baskerville' });
@@ -29,12 +30,16 @@ export default function RootLayout({
       <body className={`${inter.className} ${libreBaskerville.variable} min-h-svh overflow-x-hidden`}>
         <Header />
 
-        {/* <Component {...pageProps} canonical={router.route} key={router.route} /> */}
-        {children}
+        {/* <PageIdProvider> */}
+        <PageIdProvider>
+          {children}
+        {/* </PageIdProvider> */}
+        </PageIdProvider>
+          {/* <Component {...pageProps} canonical={router.route} key={router.route} /> */}
         {/* <h2>pathname:- {router.pathname}</h2> */}
         {/* <h2>query:- {router.query}</h2> */}
         {/* <h2>asPath:- {router.asPath}</h2> */}
-        <Footer />
+        {/* <Footer /> */}
       </body>
     </html>
   );

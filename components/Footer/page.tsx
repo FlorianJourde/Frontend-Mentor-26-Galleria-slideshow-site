@@ -84,7 +84,7 @@ export default function Footer() {
     }
   }
 
-  if (pathname !== null && pathname.startsWith("/artworks")) {
+  // if (pathname !== null && pathname.startsWith("/artworks")) {
     return (
       <footer className='fixed w-full bg-white bottom-0 flex py-8 justify-between items-center border-t-2'>
 
@@ -115,5 +115,5 @@ export default function Footer() {
         </div>
       </footer>
     )
-  }
+  // }
 }

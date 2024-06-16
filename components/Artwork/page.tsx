@@ -1,20 +1,56 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import artworks from "@/data/data.json";
-import { useSearchParams } from 'next/navigation'
+import { useParams, usePathname, useSearchParams } from 'next/navigation'
 import resolveImagePath from '@/utils/resolveImagePath';
 import Footer from '../Footer/page';
 import { AnimatePresence } from 'framer-motion';
+// import { usePageId } from '@/contexts/PageIdContext';
+// import { PageIdProvider } from '@/contexts/PageIdContext';
+import { PageIdContext, usePageId } from '@/contexts/PageIdContext'
+
+// import { PageIdProvider, usePageId } from "@/contexts/PageIdContext";
 
 export default function Artwork() {
-  const searchParams = useSearchParams()
-  let id: string = '0'
-  const artwork = artworks[parseInt(id)]
-  const heroImagePath = resolveImagePath(artwork.images.thumbnail);
-  const artistImagePath = resolveImagePath(artwork.artist.image);
+  // const pageId = useContext(PageIdContext);
 
+  // const pageId = useContext(PageIdContext);
+  const pageId = useContext(PageIdContext);
+  // const theme = useContext(PageIdProvider);
+  const searchParams = useSearchParams()
+  let id: number = 0
+  // const { pageId } = usePageId()
+
+
+  // const user = useContext(pageId);
+
+  console.log(pageId);
+
+  // const test: any = useContext({pageId})
+  // if (searchParams !== null) {
   if (searchParams !== null) {
-    id = searchParams.get('id')!
+    // id = searchParams.get('id')
+    id = parseInt(searchParams.get('id')!)
   }
+
+  // console.log(pageId);
+
+
+  const artwork = artworks[id]
+  const heroImagePath = resolveImagePath(artworks[id].images.thumbnail);
+  const artistImagePath = resolveImagePath(artworks[id].artist.image);
+
+  // const [artworkPage, setArtworkPage] = useState<number>()
+  // const searchParams = useSearchParams()
+  // const pathname = usePathname();
+  // const params = useParams()
+  // const search = searchParams.get('search')
+  // console.log(searchParams.get('id'));
+  // console.log(params);
+  // console.log(heroImagePath);
+  // console.log(artistImagePath);
+  // console.log(id);
+  // console.log(artwork);
+
 
   return (
     <div>
@@ -38,6 +74,9 @@ export default function Artwork() {
           </div>
         </div>
       </div>
+
+      <Footer />
+
 
     </div>
   )
