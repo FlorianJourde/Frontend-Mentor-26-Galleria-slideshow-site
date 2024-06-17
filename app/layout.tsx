@@ -21,8 +21,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} ${libreBaskerville.variable} min-h-svh overflow-x-hidden`}>
-        <Header />
         <PageIdProvider>
+          <Header />
           {children}
         </PageIdProvider>
       </body>

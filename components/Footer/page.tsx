@@ -1,10 +1,10 @@
 'use client'
 
-import React, { useContext } from 'react'
-import artworks from "@/data/data.json";
 import { PageIdContext } from '@/contexts/PageIdContext'
-import getPreviousArtwork from '@/utils/getPreviousArtwork';
+import artworks from "@/data/data.json";
 import getNextArtwork from '@/utils/getNextArtwork';
+import getPreviousArtwork from '@/utils/getPreviousArtwork';
+import React, { useContext } from 'react'
 
 export default function Footer() {
   const pageId = useContext(PageIdContext);
