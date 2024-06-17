@@ -1,12 +1,10 @@
 'use client'
 
 import React, { useContext } from 'react'
-import BackButtonLogo from '@/public/assets/shared/icon-back-button.svg'
-import NextButtonLogo from '@/public/assets/shared/icon-next-button.svg'
 import artworks from "@/data/data.json";
-import Link from 'next/link'
-import convertToSlug from '@/utils/convertToSlug'
 import { PageIdContext } from '@/contexts/PageIdContext'
+import getPreviousArtwork from '@/utils/getPreviousArtwork';
+import getNextArtwork from '@/utils/getNextArtwork';
 
 export default function Footer() {
   const pageId = useContext(PageIdContext);
@@ -16,54 +14,6 @@ export default function Footer() {
     currentPageId = pageId
   } else {
     currentPageId = 0
-  }
-
-  function getPreviousArtwork() {
-    if (currentPageId !== undefined) {
-      const previousArtwork = currentPageId - 1
-
-      if (currentPageId > 0) {
-        return (
-          <Link
-            href={{
-              pathname: `/artworks/${convertToSlug(artworks[previousArtwork].name)}`,
-              query: { id: currentPageId - 1 },
-            }}>
-            <BackButtonLogo />
-          </Link>
-        )
-      } else {
-        return (
-          <Link href='#'>
-            <BackButtonLogo className='opacity-10' />
-          </Link>
-        )
-      }
-    }
-  }
-
-  function getNextArtwork() {
-    if (currentPageId !== undefined) {
-      const nextArtwork = currentPageId + 1
-
-      if (currentPageId < (artworks.length - 1)) {
-        return (
-          <Link
-            href={{
-              pathname: `/artworks/${convertToSlug(artworks[nextArtwork].name)}`,
-              query: { id: currentPageId + 1 },
-            }}>
-            <NextButtonLogo />
-          </Link>
-        )
-      } else {
-        return (
-          <Link href='#'>
-            <NextButtonLogo className='opacity-10' />
-          </Link>
-        )
-      }
-    }
   }
 
   function progressBar() {
@@ -96,8 +46,8 @@ export default function Footer() {
           {currentPageId !== undefined &&
             <div className='buttons-container flex gap-12'>
 
-              {getPreviousArtwork()}
-              {getNextArtwork()}
+              {getPreviousArtwork(currentPageId, artworks)}
+              {getNextArtwork(currentPageId, artworks)}
 
             </div>
           }
