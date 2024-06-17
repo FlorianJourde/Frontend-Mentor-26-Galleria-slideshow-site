@@ -1,43 +1,63 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import artworks from "@/data/data.json";
-import { useParams, usePathname, useSearchParams } from 'next/navigation'
+import { useParams, usePathname, useRouter, useSearchParams } from 'next/navigation'
 import resolveImagePath from '@/utils/resolveImagePath';
 import Footer from '../Footer/page';
 import { AnimatePresence } from 'framer-motion';
 // import { usePageId } from '@/contexts/PageIdContext';
 // import { PageIdProvider } from '@/contexts/PageIdContext';
-import { PageIdContext, usePageId } from '@/contexts/PageIdContext'
+import { PageIdContext } from '@/contexts/PageIdContext'
+// import { useRouter } from 'next/router';
 
 // import { PageIdProvider, usePageId } from "@/contexts/PageIdContext";
 
 export default function Artwork() {
-  // const pageId = useContext(PageIdContext);
-
-  // const pageId = useContext(PageIdContext);
   const pageId = useContext(PageIdContext);
-  // const theme = useContext(PageIdProvider);
-  const searchParams = useSearchParams()
-  let id: number = 0
+  const router = useRouter()
+  const pathname = usePathname()
+  let id: number
   // const { pageId } = usePageId()
 
 
   // const user = useContext(pageId);
 
-  console.log(pageId);
 
   // const test: any = useContext({pageId})
   // if (searchParams !== null) {
-  if (searchParams !== null) {
-    // id = searchParams.get('id')
-    id = parseInt(searchParams.get('id')!)
-  }
+  // id = searchParams.get('id')
+
+  // if (searchParams !== null) {
+  //   id = parseInt(searchParams.get('id')!)
+  // }
 
   // console.log(pageId);
 
+  // useEffect(() => {
+
+  // if (typeof pageId === 'number') {
+  // const currentId = searchParams.get("id");
+
+  if (typeof pageId === 'number' && !Number.isNaN(pageId)) {
+    console.log(pageId);
+    // if (typeof pageId !== 'number') {
+    // setArtworkPage(parseInt(currentId))
+    id = pageId
+  } else {
+    // setArtworkPage(undefined)
+    id = 0
+  }
+  // }
+  // }, [router, id])
+
+  // const artwork = artworks[id]
+  // const heroImagePath = resolveImagePath(artworks[id].images.thumbnail);
+  // const artistImagePath = resolveImagePath(artworks[id].artist.image);
 
   const artwork = artworks[id]
   const heroImagePath = resolveImagePath(artworks[id].images.thumbnail);
   const artistImagePath = resolveImagePath(artworks[id].artist.image);
+
+
 
   // const [artworkPage, setArtworkPage] = useState<number>()
   // const searchParams = useSearchParams()

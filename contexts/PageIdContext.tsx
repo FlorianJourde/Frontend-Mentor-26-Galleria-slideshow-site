@@ -20,12 +20,12 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 
 // const PageIdContext = createContext<PageIdContextProps | undefined>(undefined);
 // const PageIdContext = createContext<PageIdContextProps | undefined>(undefined);
-export const PageIdContext = createContext<number | null>(null);
+export const PageIdContext = createContext<number>(0);
 // const PageIdContext = createContext<AppContext>({} as AppContext);
 
 export const PageIdProvider = ({ children }: any) => {
 // export const PageIdProvider = ({ children }: any) => {
-  const [pageId, setPageId] = useState<number>(4);
+  const [pageId, setPageId] = useState<number>(0);
 
   const searchParams = useSearchParams()
   const router = useRouter()
@@ -38,12 +38,14 @@ export const PageIdProvider = ({ children }: any) => {
   useEffect(() => {
     // const id = router.pathname.replace('/', '') || 'home';
 
-    if (searchParams !== null) {
+    if (searchParams !== null && searchParams !== undefined) {
       // if (pageId !== id) {
       // setPageId(id);
       setPageId(parseInt(searchParams.get('id')!));
 
       // }
+    } else {
+      setPageId(0);
     }
   }, [pathname]);
   // console.log('test');
