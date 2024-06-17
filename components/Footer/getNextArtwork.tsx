@@ -1,4 +1,4 @@
-import convertToSlug from "./convertToSlug"
+import convertToSlug from "@/utils/convertToSlug"
 import NextButtonLogo from '@/public/assets/shared/icon-next-button.svg'
 import Link from 'next/link'
 

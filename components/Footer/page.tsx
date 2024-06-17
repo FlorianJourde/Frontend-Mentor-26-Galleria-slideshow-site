@@ -2,8 +2,8 @@
 
 import { PageIdContext } from '@/contexts/PageIdContext'
 import artworks from "@/data/data.json";
-import getNextArtwork from '@/utils/getNextArtwork';
-import getPreviousArtwork from '@/utils/getPreviousArtwork';
+import getNextArtwork from '@/components/Footer/getNextArtwork';
+import getPreviousArtwork from '@/components/Footer/getPreviousArtwork';
 import React, { useContext } from 'react'
 
 export default function Footer() {
@@ -27,7 +27,7 @@ export default function Footer() {
   }
 
   return (
-    <footer className='fixed w-full bg-white bottom-0 flex py-8 justify-between items-center border-t-2'>
+    <footer className='fixed w-full bg-white bottom-0 flex py-5 lg:py-8 justify-between items-center border-t-2'>
 
       {progressBar()}
 

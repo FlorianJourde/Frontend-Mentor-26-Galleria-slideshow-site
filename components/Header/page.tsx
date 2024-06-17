@@ -21,7 +21,6 @@ export default function Header() {
     } else {
       setSlideshow(false)
     }
-    console.log(slideshow);
   }
 
   if (typeof pageId === 'number' && !Number.isNaN(pageId)) {
@@ -39,8 +38,6 @@ export default function Header() {
     if (slideshow === true) {
       const updatePage = setInterval(() => {
         if (artworks.length - 1 === currentPageId) {
-          console.log(artworks.length - 1);
-          console.log(currentPageId);
           router.push(`/artworks/${convertToSlug(artworks[0].name)}?id=0`)
         } else {
           router.push(`/artworks/${convertToSlug(artworks[currentPageId + 1].name)}?id=${currentPageId + 1}`)
@@ -53,10 +50,10 @@ export default function Header() {
   }, [slideshow, pathname, pageId])
 
   return (
-    <header className="flex py-8 bg-white justify-between items-center border-b-2 fixed top-0 left-0 w-full z-10">
+    <header className="flex py-5 sm:py-8 bg-white justify-between items-center border-b-2 fixed top-0 left-0 w-full z-20 flex-wrap gap-4">
       <div className="wrapper">
         <Link href="/">
-          <Logo />
+          <Logo className="w-32 sm:w-44" />
         </Link>
         <button onClick={() => toggleSlideshow()} className={`uppercase opacity-50 font-bold tracking-widest text-xs font-libre-baskerville`}>{slideshow === false ? 'Start' : 'Stop'} Slideshow</button>
       </div>
