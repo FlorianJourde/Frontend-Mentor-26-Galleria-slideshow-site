@@ -2,10 +2,6 @@ import type { Metadata } from "next";
 import { Inter, Libre_Baskerville } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header/page";
-import Footer from "@/components/Footer/page";
-import { AnimatePresence } from 'framer-motion';
-import { useRouter } from "next/router";
-import { usePathname } from "next/navigation";
 import { PageIdProvider } from "@/contexts/PageIdContext";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -22,24 +18,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
 
-  // const router = useRouter()
-  // const pathname = usePathname();
-
   return (
     <html lang="en">
       <body className={`${inter.className} ${libreBaskerville.variable} min-h-svh overflow-x-hidden`}>
         <Header />
-
-        {/* <PageIdProvider> */}
         <PageIdProvider>
           {children}
-        {/* </PageIdProvider> */}
         </PageIdProvider>
-          {/* <Component {...pageProps} canonical={router.route} key={router.route} /> */}
-        {/* <h2>pathname:- {router.pathname}</h2> */}
-        {/* <h2>query:- {router.query}</h2> */}
-        {/* <h2>asPath:- {router.asPath}</h2> */}
-        {/* <Footer /> */}
       </body>
     </html>
   );

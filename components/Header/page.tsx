@@ -1,26 +1,20 @@
 'use client'
 
-import React from 'react'
-// import Logo from '/public/assets/shared/logo.svg'
+import React, { useContext } from 'react'
 import Logo from '/public/assets/shared/logo.svg'
 import Link from 'next/link'
-import { Libre_Baskerville } from "next/font/google";
-import { useSearchParams } from 'next/navigation';
-
-// const libreBaskerville = Libre_Baskerville({ subsets: ["latin"], weight: ['400', '700'] });
+import { PageIdContext } from '@/contexts/PageIdContext';
 
 export default function Header() {
-  const searchParams = useSearchParams()
-  let id: number = 0
+  const pageId = useContext(PageIdContext);
+  let currentPageId: number
 
-  // if (searchParams !== null) {
-  if (searchParams !== null) {
-    // id = searchParams.get('id')
-    id = parseInt(searchParams.get('id')!)
+  if (typeof pageId === 'number' && !Number.isNaN(pageId)) {
+    currentPageId = pageId
+  } else {
+    currentPageId = 0
   }
-
-  // console.log(id)
-
+  
   return (
     <header className="flex py-8 bg-white justify-between items-center border-b-2 fixed top-0 left-0 w-full z-10">
       <div className="wrapper">
