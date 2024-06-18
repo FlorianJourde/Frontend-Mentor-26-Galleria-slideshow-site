@@ -40,6 +40,7 @@ export default function Header() {
           router.push(`/artworks/${convertToSlug(artworks[0].name)}?id=0`)
         } else {
           router.push(`/artworks/${convertToSlug(artworks[currentPageId + 1].name)}?id=${currentPageId + 1}`)
+          // router.push(`/artworks/${convertToSlug(artworks[currentPageId + 1].name)}`)
         }
       }, 1000 * 5)
 
@@ -68,7 +69,7 @@ export default function Header() {
         <AnimatePresence>
           <motion.button
             initial={{ x: 10, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
+            animate={{ x: 0, opacity: .5 }}
             exit={{ x: 10, opacity: 0 }}
             transition={{ delay: .4, duration: .8 }}
             onClick={() => toggleSlideshow()} className={`uppercase opacity-50 font-bold tracking-widest text-xs font-libre-baskerville`}>{slideshow === false ? 'Start' : 'Stop'} Slideshow

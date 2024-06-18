@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useContext, useState } from 'react'
 import artworks from "@/data/data.json";
 import resolveImagePath from '@/utils/resolveImagePath';
@@ -7,7 +9,9 @@ import Lightbox from './Lightbox';
 import ViewIcon from '@/public/assets/shared/icon-view-image.svg'
 import { motion, AnimatePresence } from 'framer-motion'
 
-export default function Artwork() {
+export default function Artwork({ params }: { params: any }) {
+  // console.log(params);  
+
   const [lightbox, setLightbox] = useState<boolean>(false)
   const pageId = useContext(PageIdContext);
   let currentPageId: number
@@ -31,9 +35,9 @@ export default function Artwork() {
 
               <AnimatePresence>
                 <motion.img
-                  initial={{ x: 10, opacity: 0 }}
+                  initial={{ x: -10, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
-                  exit={{ x: 10, opacity: 0 }}
+                  exit={{ x: -10, opacity: 0 }}
                   transition={{ duration: .8 }}
                   className='w-full h-full max-h-[600px] lg:max-h-[800px] object-cover md:col-span-2 md:row-span-2 max-w-full' src={heroImagePath} alt="" />
               </AnimatePresence>

@@ -7,7 +7,7 @@ export default function Lightbox({ heroImagePath, lightbox, setLightbox }: { her
   // console.log(setLightbox);
 
   useEffect(() => {
-    console.log(lightbox);
+    // console.log(lightbox);
   }, [lightbox])
 
 
