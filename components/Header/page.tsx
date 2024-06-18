@@ -18,21 +18,19 @@ export default function Header() {
   function toggleSlideshow() {
     if (slideshow === false) {
       setSlideshow(true)
+      if (!pathname?.startsWith('/artworks')) {
+        router.push(`/artworks/${convertToSlug(artworks[0].name)}?id=0`)
+      }
     } else {
       setSlideshow(false)
     }
   }
 
-  if (typeof pageId === 'number' && !Number.isNaN(pageId)) {
-    currentPageId = pageId
-  } else {
-    currentPageId = 0
-  }
-
   useEffect(() => {
-    if (!pathname?.startsWith('/artworks')) {
-      setSlideshow(false)
-      return
+    if (typeof pageId === 'number' && !Number.isNaN(pageId)) {
+      currentPageId = pageId
+    } else {
+      currentPageId = 0
     }
 
     if (slideshow === true) {
@@ -42,7 +40,7 @@ export default function Header() {
         } else {
           router.push(`/artworks/${convertToSlug(artworks[currentPageId + 1].name)}?id=${currentPageId + 1}`)
         }
-      }, 1000 * 5)
+      }, 1000 * 1)
 
       return () => clearInterval(updatePage);
     }
@@ -53,7 +51,8 @@ export default function Header() {
     <header className="flex py-5 sm:py-8 bg-white justify-between items-center border-b-2 fixed top-0 left-0 w-full z-20 flex-wrap gap-4">
       <div className="wrapper">
         <Link href="/">
-          <Logo className="w-32 sm:w-44" />
+          {/* <Logo onClick={() => slideshow === true ?? toggleSlideshow()} className="w-32 sm:w-44" /> */}
+          <Logo onClick={() => slideshow === true && toggleSlideshow()} className="w-32 sm:w-44" />
         </Link>
         <button onClick={() => toggleSlideshow()} className={`uppercase opacity-50 font-bold tracking-widest text-xs font-libre-baskerville`}>{slideshow === false ? 'Start' : 'Stop'} Slideshow</button>
       </div>
