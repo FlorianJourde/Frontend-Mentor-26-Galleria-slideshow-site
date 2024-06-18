@@ -7,6 +7,7 @@ import artworks from "@/data/data.json";
 import React, { useContext, useEffect, useState } from 'react'
 import { usePathname, useRouter } from 'next/navigation';
 import convertToSlug from '@/utils/convertToSlug';
+import { motion, AnimatePresence } from 'framer-motion'
 
 export default function Header() {
   const [slideshow, setSlideshow] = useState<boolean>(false)
@@ -40,7 +41,7 @@ export default function Header() {
         } else {
           router.push(`/artworks/${convertToSlug(artworks[currentPageId + 1].name)}?id=${currentPageId + 1}`)
         }
-      }, 1000 * 1)
+      }, 1000 * 5)
 
       return () => clearInterval(updatePage);
     }
@@ -50,11 +51,30 @@ export default function Header() {
   return (
     <header className="flex py-5 sm:py-8 bg-white justify-between items-center border-b-2 fixed top-0 left-0 w-full z-20 flex-wrap gap-4">
       <div className="wrapper">
-        <Link href="/">
-          {/* <Logo onClick={() => slideshow === true ?? toggleSlideshow()} className="w-32 sm:w-44" /> */}
-          <Logo onClick={() => slideshow === true && toggleSlideshow()} className="w-32 sm:w-44" />
-        </Link>
-        <button onClick={() => toggleSlideshow()} className={`uppercase opacity-50 font-bold tracking-widest text-xs font-libre-baskerville`}>{slideshow === false ? 'Start' : 'Stop'} Slideshow</button>
+
+        <AnimatePresence>
+          <motion.div
+            initial={{ x: -10, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            exit={{ x: -10, opacity: 0 }}
+            transition={{ duration: .8 }}
+            className="logo-container">
+            <Link href="/">
+              <Logo onClick={() => slideshow === true && toggleSlideshow()} className="w-32 sm:w-44" />
+            </Link>
+          </motion.div>
+        </AnimatePresence>
+
+        <AnimatePresence>
+          <motion.button
+            initial={{ x: 10, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            exit={{ x: 10, opacity: 0 }}
+            transition={{ delay: .4, duration: .8 }}
+            onClick={() => toggleSlideshow()} className={`uppercase opacity-50 font-bold tracking-widest text-xs font-libre-baskerville`}>{slideshow === false ? 'Start' : 'Stop'} Slideshow
+          </motion.button>
+        </AnimatePresence>
+
       </div>
     </header>
   )

@@ -5,6 +5,7 @@ import artworks from "@/data/data.json";
 import getNextArtwork from '@/components/Footer/getNextArtwork';
 import getPreviousArtwork from '@/components/Footer/getPreviousArtwork';
 import React, { useContext } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 
 export default function Footer() {
   const pageId = useContext(PageIdContext);
@@ -35,21 +36,46 @@ export default function Footer() {
 
         <div className='flex justify-between items-center gap-10 w-full'>
           <div className="title flex flex-col gap-2">
-            <h2 className='font-bold tracking-widest text-xl font-libre-baskerville'>
-              {currentPageId !== undefined && artworks[currentPageId].name}
-            </h2>
-            <h3 className='opacity-50 font-bold tracking-widest text-sm font-libre-baskerville'>
-              {currentPageId !== undefined && artworks[currentPageId].artist.name}
-            </h3>
+
+            <AnimatePresence>
+              <motion.h2
+                initial={{ x: -10, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                exit={{ x: -10, opacity: 0 }}
+                transition={{ duration: .8 }}
+                className='font-bold tracking-widest md:text-xl font-libre-baskerville'>
+                {currentPageId !== undefined && artworks[currentPageId].name}
+              </motion.h2>
+            </AnimatePresence>
+
+            <AnimatePresence>
+              <motion.h3
+                initial={{ x: -10, opacity: 0 }}
+                animate={{ x: 0, opacity: .5 }}
+                exit={{ x: -10, opacity: 0 }}
+                transition={{ delay: .4, duration: .8 }}
+                className='opacity-50 font-bold tracking-widest text-xs md:text-sm font-libre-baskerville'>
+                {currentPageId !== undefined && artworks[currentPageId].artist.name}
+              </motion.h3>
+            </AnimatePresence>
+
           </div>
 
           {currentPageId !== undefined &&
-            <div className='buttons-container flex gap-12'>
 
-              {getPreviousArtwork(currentPageId, artworks)}
-              {getNextArtwork(currentPageId, artworks)}
+            <AnimatePresence>
+              <motion.div
+                initial={{ x: 10, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                exit={{ x: 10, opacity: 0 }}
+                transition={{ delay: .4, duration: .8 }}
+                className='buttons-container flex gap-8 md:gap-12'>
 
-            </div>
+                {getPreviousArtwork(currentPageId, artworks)}
+                {getNextArtwork(currentPageId, artworks)}
+
+              </motion.div>
+            </AnimatePresence>
           }
 
         </div>
