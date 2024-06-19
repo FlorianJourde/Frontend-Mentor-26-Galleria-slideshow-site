@@ -1,1 +1,0 @@
-{"c":["app/layout","app/artworks/[slug]/page","webpack"],"r":[],"m":["(app-pages-browser)/./components/Artwork/Lightbox.tsx","(app-pages-browser)/./public/assets/shared/icon-view-image.svg","(app-pages-browser)/./utils/resolveImagePath.tsx"]}

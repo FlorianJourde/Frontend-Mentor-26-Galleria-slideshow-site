@@ -68,7 +68,7 @@ export function generateStaticParams() {
 // }
 // }
 
-export const dynamicParams = false;
+// export const dynamicParams = false;
 
 // export default function artwork({ params }: { params: any }) {
 // export default function Page({ params }: { params: { slug: string } }) {
@@ -82,7 +82,7 @@ export default function Page({ params }: { params: { slug: string } }) {
       {/* {() => generateStaticParams()} */}
       {/* <Suspense> */}
       {/* <Artwork slug={slug} /> */}
-      <Artwork slug={slug} />
+      <Artwork />
       {/* </Suspense> */}
     </div>
   )

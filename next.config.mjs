@@ -1,8 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // output: "export",  // Enables static exports
+  output: "export",  // Enables static exports
   // output: process.env.GITHUB_ACTION ? 'export' : undefined,
-  distDir: 'dist',
+  // distDir: 'dist',
   images: {
     unoptimized: true,
   },
