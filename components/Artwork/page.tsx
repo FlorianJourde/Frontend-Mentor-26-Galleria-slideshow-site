@@ -9,8 +9,10 @@ import Lightbox from './Lightbox';
 import ViewIcon from '@/public/assets/shared/icon-view-image.svg'
 import { motion, AnimatePresence } from 'framer-motion'
 
-export default function Artwork({ params }: { params: any }) {
-  // console.log(params);  
+export default function Artwork({ slug }: { slug: string }) {
+  // console.log(params);
+  console.log(slug);
+  // console.log(id);
 
   const [lightbox, setLightbox] = useState<boolean>(false)
   const pageId = useContext(PageIdContext);
