@@ -9,6 +9,7 @@ import Lightbox from './Lightbox';
 import ViewIcon from '@/public/assets/shared/icon-view-image.svg'
 import { motion, AnimatePresence } from 'framer-motion'
 import convertToSlug from '@/utils/convertToSlug';
+import Image from 'next/image';
 
 export default function Artwork() {
   const [lightbox, setLightbox] = useState<boolean>(false)
@@ -34,12 +35,31 @@ export default function Artwork() {
             <div className='image-showing relative md:col-span-2 grid md:grid-cols-3 md:grid-rows-[minmax(0,_auto)_minmax(0,_1fr)] xl:grid-rows-[repeat(2,_minmax(0,_auto))]'>
 
               <AnimatePresence>
-                <motion.img
+
+                <motion.div
                   initial={{ x: -10, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
                   exit={{ x: -10, opacity: 0 }}
                   transition={{ duration: .8 }}
-                  className='w-full h-full max-h-[600px] lg:max-h-[800px] object-cover md:col-span-2 md:row-span-2 max-w-full' src={`..${heroImagePath}`} alt="" />
+                  className='w-full h-full  max-h-[600px] lg:max-h-[800px] md:col-span-2 md:row-span-2 max-w-full'
+                >
+                  <Image height={0} width={0} sizes="100vw" className='w-full h-full  object-cover' alt='' src={`..${heroImagePath}`} />
+
+                </motion.div>
+
+                {/* <motion.img
+                  initial={{ x: -10, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  exit={{ x: -10, opacity: 0 }}
+                  transition={{ duration: .8 }}
+                  className='w-full h-full max-h-[600px] lg:max-h-[800px] object-cover md:col-span-2 md:row-span-2 max-w-full' src={`..${heroImagePath}`} alt="" /> */}
+                {/* <motion.img
+                  initial={{ x: -10, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  exit={{ x: -10, opacity: 0 }}
+                  transition={{ duration: .8 }}
+                  className='w-full h-full max-h-[600px] lg:max-h-[800px] object-cover md:col-span-2 md:row-span-2 max-w-full' src={`..${heroImagePath}`} alt="" /> */}
+
               </AnimatePresence>
 
               <AnimatePresence>
