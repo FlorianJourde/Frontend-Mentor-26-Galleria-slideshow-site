@@ -1,6 +1,6 @@
 'use client'
 
-import { PageIdContext } from '@/contexts/PageIdContext';
+import { SlugContext } from '@/contexts/SlugContext';
 import Link from 'next/link'
 import Logo from '/public/assets/shared/logo.svg'
 import artworks from "@/data/data.json";
@@ -11,8 +11,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 
 export default function Header() {
   const [slideshow, setSlideshow] = useState<boolean>(false)
-  // const slug = useContext(PageIdContext);
-  const slug = useContext(PageIdContext);
+  const slug = useContext(SlugContext);
   const pageId = artworks.findIndex(artwork => convertToSlug(artwork.name) === slug);
   const router = useRouter()
   const pathname = usePathname()
@@ -31,7 +30,6 @@ export default function Header() {
 
   useEffect(() => {
     if (typeof pageId === 'number' && pageId >= 0) {
-      // if (typeof pageId === 'number' && !Number.isNaN(pageId)) {
       currentPageId = pageId
     } else {
       currentPageId = 0
@@ -40,12 +38,9 @@ export default function Header() {
     if (slideshow === true) {
       const updatePage = setInterval(() => {
         if (artworks.length - 1 === currentPageId) {
-          // router.push(`/artworks/${convertToSlug(artworks[0].name)}?id=0`)
           router.push(`/artworks/${convertToSlug(artworks[0].name)}`)
         } else {
-          // router.push(`/artworks/${convertToSlug(artworks[currentPageId + 1].name)}?id=${currentPageId + 1}`)
           router.push(`/artworks/${convertToSlug(artworks[currentPageId + 1].name)}`)
-          // router.push(`/artworks/${convertToSlug(artworks[currentPageId + 1].name)}`)
         }
       }, 1000 * 5)
 

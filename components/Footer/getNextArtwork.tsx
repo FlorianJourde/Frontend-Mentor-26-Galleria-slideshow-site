@@ -12,7 +12,6 @@ export default function getNextArtwork(currentPageId: any, artworks: Array<any>)
         <Link
           href={{
             pathname: `/artworks/${convertToSlug(artworks[nextArtwork].name)}`,
-            // query: { id: currentPageId + 1 },
           }}>
           <NextButtonLogo />
         </Link>
@@ -22,7 +21,6 @@ export default function getNextArtwork(currentPageId: any, artworks: Array<any>)
         <Link
           href={{
             pathname: `/artworks/${convertToSlug(artworks[firstArtwork].name)}`,
-            // query: { id: firstArtwork },
           }}>
           <NextButtonLogo />
         </Link>

@@ -1,6 +1,6 @@
 'use client'
 
-import { PageIdContext } from '@/contexts/PageIdContext'
+import { SlugContext } from '@/contexts/SlugContext'
 import artworks from "@/data/data.json";
 import getNextArtwork from '@/components/Footer/getNextArtwork';
 import getPreviousArtwork from '@/components/Footer/getPreviousArtwork';
@@ -9,13 +9,10 @@ import { motion, AnimatePresence } from 'framer-motion'
 import convertToSlug from '@/utils/convertToSlug';
 
 export default function Footer() {
-  // const pageId = useContext(PageIdContext);
-  const slug = useContext(PageIdContext);
+  const slug = useContext(SlugContext);
   const pageId = artworks.findIndex(artwork => convertToSlug(artwork.name) === slug);
   let currentPageId: number = 0
 
-
-  // if (typeof pageId === 'number' && !Number.isNaN(pageId)) {
   if (typeof pageId === 'number' && pageId >= 0) {
     currentPageId = pageId
   } else {
@@ -67,8 +64,6 @@ export default function Footer() {
           </div>
 
           {currentPageId !== undefined &&
-
-            // <AnimatePresence>
             <div
               className='buttons-container flex gap-8 md:gap-12'>
 
@@ -76,9 +71,6 @@ export default function Footer() {
               {getNextArtwork(currentPageId, artworks)}
 
             </div>
-
-            // {/* </AnimatePresence> */}
-
           }
 
         </div>

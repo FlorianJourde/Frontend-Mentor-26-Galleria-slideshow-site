@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Libre_Baskerville } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header/page";
-import { PageIdProvider } from "@/contexts/PageIdContext";
+import { PageIdProvider } from "@/contexts/SlugContext";
 
 const inter = Inter({ subsets: ["latin"] });
 const libreBaskerville = Libre_Baskerville({ subsets: ["latin"], weight: ['400', '700'], variable: '--font-baskerville' });

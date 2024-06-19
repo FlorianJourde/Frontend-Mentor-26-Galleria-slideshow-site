@@ -1,15 +1,6 @@
-import React, { Dispatch, SetStateAction, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import React, { Dispatch, SetStateAction } from 'react'
 
 export default function Lightbox({ heroImagePath, lightbox, setLightbox }: { heroImagePath: string, lightbox: boolean, setLightbox: Dispatch<SetStateAction<boolean>> }) {
-  // console.log(heroImagePath);
-  // console.log(lightbox);
-  // console.log(setLightbox);
-
-  useEffect(() => {
-    // console.log(lightbox);
-  }, [lightbox])
-
 
   return (
     <div className={`lightbox z-20 fixed top-0 left-0 w-full h-full bg-[hsl(0deg_0%_0%_/_90%)] transition-opacity duration-500 ${lightbox === true ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'}`}>

@@ -6,7 +6,6 @@ import Link from "next/link";
 import convertToSlug from '@/utils/convertToSlug'
 import { motion, AnimatePresence } from 'framer-motion'
 
-
 export default function Portfolio() {
 
   return (
@@ -25,8 +24,6 @@ export default function Portfolio() {
               key={convertToSlug(artwork.name)}>
               <Link className="flex flex-col p-5 justify-end absolute bottom-0 text-white h-full w-full before:content-[''] before:top-0 before:absolute before:left-0 before:w-full before:h-full before:bg-[linear-gradient(360deg,_black,_transparent_50%)] before:z-0 [&>*]:z-10" href={{
                 pathname: `/artworks/${convertToSlug(artwork.name)}`,
-                // pathname: `/artworks/${convertToSlug(artwork.name)}`,
-                // query: { id: index },
               }}>
                 <p className={`text-2xl font-bold font-libre-baskerville`}>{artwork.name}</p>
                 <p className={`text-sm opacity-50 font-libre-baskerville`}>{artwork.artist.name}</p>

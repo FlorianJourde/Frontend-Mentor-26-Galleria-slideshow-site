@@ -1,61 +1,30 @@
 'use client'
 
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import artworks from "@/data/data.json";
 import resolveImagePath from '@/utils/resolveImagePath';
 import Footer from '../Footer/page';
-import { PageIdContext } from '@/contexts/PageIdContext'
+import { SlugContext } from '@/contexts/SlugContext'
 import Lightbox from './Lightbox';
 import ViewIcon from '@/public/assets/shared/icon-view-image.svg'
 import { motion, AnimatePresence } from 'framer-motion'
 import convertToSlug from '@/utils/convertToSlug';
 
-// export default function Artwork({ slug }: { slug: string }) {
 export default function Artwork() {
-  // console.log(params);
-  // console.log(slug);
-  // console.log(id);
-
   const [lightbox, setLightbox] = useState<boolean>(false)
-  const slug = useContext(PageIdContext);
+  const slug = useContext(SlugContext);
   let currentPageId: number
-
-  // convertToSlug()
-
-  // console.log(artworks.asList(TYPES).indexOf("Sedan"));
-  // console.log(artworks.findIndex(artwork => convertToSlug(artwork.name) === slug));
   const pageId = artworks.findIndex(artwork => convertToSlug(artwork.name) === slug);
 
-  // console.log(artworks.name);
-  // console.log(slug);
-  // console.log(pageId);
-
-  // if (typeof pageId === 'number' && !Number.isNaN(pageId)) {
-  //   currentPageId = pageId
-  // } else {
-  //   currentPageId = 0
-  // }
-
-  // useEffect(() => {
-  // }, [slug])
-
   if (typeof pageId === 'number' && pageId >= 0) {
-    // if (typeof pageId === 'number' && !Number.isNaN(pageId)) {
     currentPageId = pageId
   } else {
     currentPageId = 0
   }
 
-  // console.log(currentPageId);
-
   const artwork = artworks[currentPageId]
   const heroImagePath = resolveImagePath(artworks[currentPageId].images.gallery);
   const artistImagePath = resolveImagePath(artworks[currentPageId].artist.image);
-
-  // console.log(artwork);
-  // console.log(heroImagePath);
-  // console.log(artistImagePath);
-
 
   return (
     <div className='overflow-x-hidden'>
@@ -91,7 +60,7 @@ export default function Artwork() {
                   animate={{ x: 0, opacity: 1 }}
                   exit={{ x: 10, opacity: 0 }}
                   transition={{ delay: 1.2, duration: .8 }}
-                  className='md:self-start xl:self-end justify-self-start pt-8 md:pt-0 md:p-10 xl:-mb-24 max-w-20 md:max-w-full' src={`..${artistImagePath}`} 
+                  className='md:self-start xl:self-end justify-self-start pt-8 md:pt-0 md:p-10 xl:-mb-24 max-w-20 md:max-w-full' src={`..${artistImagePath}`}
                   alt="" />
               </AnimatePresence>
 
