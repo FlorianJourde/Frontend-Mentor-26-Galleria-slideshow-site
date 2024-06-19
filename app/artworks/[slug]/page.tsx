@@ -81,6 +81,7 @@ export default function Page({ params }: { params: { slug: string } }) {
     <div>
       {/* {() => generateStaticParams()} */}
       {/* <Suspense> */}
+      {/* <Artwork slug={slug} /> */}
       <Artwork slug={slug} />
       {/* </Suspense> */}
     </div>

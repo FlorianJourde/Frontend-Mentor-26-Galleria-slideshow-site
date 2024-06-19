@@ -4,31 +4,52 @@ import { useSearchParams, usePathname, useRouter } from 'next/navigation';
 // import { useRouter } from 'next/router';
 import React, { Suspense, createContext, useContext, useEffect, useState } from 'react';
 
-export const PageIdContext = createContext<number>(0);
+export const PageIdContext = createContext<string>('/');
+
+// function PageIdProviderFallback() {
+//   return <>placeholder</>
+// }
+
 
 export const PageIdProvider = ({ children }: any) => {
-  const [pageId, setPageId] = useState<number>(0);
-  const searchParams = useSearchParams()
+  // const [pageId, setPageId] = useState<number>(0);
+  const [slug, setSlug] = useState<string>('/');
+  // const searchParams = useSearchParams()
   const pathname = usePathname()
   const router = useRouter()
 
-  useEffect(() => {
-    if (searchParams !== null && searchParams !== undefined) {
-      setPageId(parseInt(searchParams.get('id')!));
-      // setPageId(parseInt(searchParams.get('id')!));
-      // console.log(router);
+  // console.log(searchParams);
+  // console.log(pathname);
+  
 
+  useEffect(() => {
+    if (typeof pathname === 'string' && pathname.startsWith('/artworks/')) {
+      // pathname.startsWith('/artworks/')
+      // console.log(pathname.replace("/artworks/", ""))
+      setSlug(pathname.replace("/artworks/", ""))
+      // pathname.replace("/artworks/", "");
     } else {
-      setPageId(0);
+      setSlug('/')
     }
+
+    // if (searchParams !== null && searchParams !== undefined) {
+    //   setPageId(parseInt(searchParams.get('id')!));
+    //   // setPageId(parseInt(searchParams.get('id')!));
+    //   // console.log(router);
+
+    // } else {
+    //   setPageId(0);
+    // }
   }, [pathname]);
 
   return (
     // <Suspense>
-    <PageIdContext.Provider value={pageId}>
-      {children}
-    </PageIdContext.Provider>
-    // </Suspense>
+    // <Suspense fallback={<PageIdProviderFallback />}>
+
+      <PageIdContext.Provider value={slug}>
+        {children}
+      </PageIdContext.Provider>
+    // {/* </Suspense> */}
   );
 };
 

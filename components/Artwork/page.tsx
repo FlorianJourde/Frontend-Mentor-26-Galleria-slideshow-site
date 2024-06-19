@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import artworks from "@/data/data.json";
 import resolveImagePath from '@/utils/resolveImagePath';
 import Footer from '../Footer/page';
@@ -8,25 +8,54 @@ import { PageIdContext } from '@/contexts/PageIdContext'
 import Lightbox from './Lightbox';
 import ViewIcon from '@/public/assets/shared/icon-view-image.svg'
 import { motion, AnimatePresence } from 'framer-motion'
+import convertToSlug from '@/utils/convertToSlug';
 
-export default function Artwork({ slug }: { slug: string }) {
+// export default function Artwork({ slug }: { slug: string }) {
+export default function Artwork() {
   // console.log(params);
-  console.log(slug);
+  // console.log(slug);
   // console.log(id);
 
   const [lightbox, setLightbox] = useState<boolean>(false)
-  const pageId = useContext(PageIdContext);
+  const slug = useContext(PageIdContext);
   let currentPageId: number
 
-  if (typeof pageId === 'number' && !Number.isNaN(pageId)) {
+  // convertToSlug()
+
+  // console.log(artworks.asList(TYPES).indexOf("Sedan"));
+  // console.log(artworks.findIndex(artwork => convertToSlug(artwork.name) === slug));
+  const pageId = artworks.findIndex(artwork => convertToSlug(artwork.name) === slug);
+
+  // console.log(artworks.name);
+  // console.log(slug);
+  // console.log(pageId);
+
+  // if (typeof pageId === 'number' && !Number.isNaN(pageId)) {
+  //   currentPageId = pageId
+  // } else {
+  //   currentPageId = 0
+  // }
+
+  // useEffect(() => {
+  // }, [slug])
+
+  if (typeof pageId === 'number' && pageId >= 0) {
+    // if (typeof pageId === 'number' && !Number.isNaN(pageId)) {
     currentPageId = pageId
   } else {
     currentPageId = 0
   }
 
+  // console.log(currentPageId);
+
   const artwork = artworks[currentPageId]
   const heroImagePath = resolveImagePath(artworks[currentPageId].images.gallery);
   const artistImagePath = resolveImagePath(artworks[currentPageId].artist.image);
+
+  // console.log(artwork);
+  // console.log(heroImagePath);
+  // console.log(artistImagePath);
+
 
   return (
     <div className='overflow-x-hidden'>
