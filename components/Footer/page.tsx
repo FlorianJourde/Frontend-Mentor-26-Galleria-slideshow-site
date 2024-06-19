@@ -6,12 +6,17 @@ import getNextArtwork from '@/components/Footer/getNextArtwork';
 import getPreviousArtwork from '@/components/Footer/getPreviousArtwork';
 import React, { useContext } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import convertToSlug from '@/utils/convertToSlug';
 
 export default function Footer() {
-  const pageId = useContext(PageIdContext);
+  // const pageId = useContext(PageIdContext);
+  const slug = useContext(PageIdContext);
+  const pageId = artworks.findIndex(artwork => convertToSlug(artwork.name) === slug);
   let currentPageId: number = 0
 
-  if (typeof pageId === 'number' && !Number.isNaN(pageId)) {
+
+  // if (typeof pageId === 'number' && !Number.isNaN(pageId)) {
+  if (typeof pageId === 'number' && pageId >= 0) {
     currentPageId = pageId
   } else {
     currentPageId = 0
@@ -63,19 +68,17 @@ export default function Footer() {
 
           {currentPageId !== undefined &&
 
-            <AnimatePresence>
-              <motion.div
-                initial={{ x: 10, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
-                exit={{ x: 10, opacity: 0 }}
-                transition={{ delay: .4, duration: .8 }}
-                className='buttons-container flex gap-8 md:gap-12'>
+            // <AnimatePresence>
+            <div
+              className='buttons-container flex gap-8 md:gap-12'>
 
-                {getPreviousArtwork(currentPageId, artworks)}
-                {getNextArtwork(currentPageId, artworks)}
+              {getPreviousArtwork(currentPageId, artworks)}
+              {getNextArtwork(currentPageId, artworks)}
 
-              </motion.div>
-            </AnimatePresence>
+            </div>
+
+            // {/* </AnimatePresence> */}
+
           }
 
         </div>
