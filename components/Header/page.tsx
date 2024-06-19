@@ -11,7 +11,9 @@ import { motion, AnimatePresence } from 'framer-motion'
 
 export default function Header() {
   const [slideshow, setSlideshow] = useState<boolean>(false)
-  const pageId = useContext(PageIdContext);
+  // const slug = useContext(PageIdContext);
+  const slug = useContext(PageIdContext);
+  const pageId = artworks.findIndex(artwork => convertToSlug(artwork.name) === slug);
   const router = useRouter()
   const pathname = usePathname()
   let currentPageId: number
@@ -20,7 +22,7 @@ export default function Header() {
     if (slideshow === false) {
       setSlideshow(true)
       if (!pathname?.startsWith('/artworks')) {
-        router.push(`/artworks/${convertToSlug(artworks[0].name)}?id=0`)
+        router.push(`/artworks/${convertToSlug(artworks[0].name)}`)
       }
     } else {
       setSlideshow(false)
@@ -28,7 +30,8 @@ export default function Header() {
   }
 
   useEffect(() => {
-    if (typeof pageId === 'number' && !Number.isNaN(pageId)) {
+    if (typeof pageId === 'number' && pageId >= 0) {
+      // if (typeof pageId === 'number' && !Number.isNaN(pageId)) {
       currentPageId = pageId
     } else {
       currentPageId = 0
@@ -37,9 +40,11 @@ export default function Header() {
     if (slideshow === true) {
       const updatePage = setInterval(() => {
         if (artworks.length - 1 === currentPageId) {
-          router.push(`/artworks/${convertToSlug(artworks[0].name)}?id=0`)
+          // router.push(`/artworks/${convertToSlug(artworks[0].name)}?id=0`)
+          router.push(`/artworks/${convertToSlug(artworks[0].name)}`)
         } else {
-          router.push(`/artworks/${convertToSlug(artworks[currentPageId + 1].name)}?id=${currentPageId + 1}`)
+          // router.push(`/artworks/${convertToSlug(artworks[currentPageId + 1].name)}?id=${currentPageId + 1}`)
+          router.push(`/artworks/${convertToSlug(artworks[currentPageId + 1].name)}`)
           // router.push(`/artworks/${convertToSlug(artworks[currentPageId + 1].name)}`)
         }
       }, 1000 * 5)
@@ -47,7 +52,7 @@ export default function Header() {
       return () => clearInterval(updatePage);
     }
 
-  }, [slideshow, pathname, pageId])
+  }, [slideshow, pathname, slug])
 
   return (
     <header className="flex py-5 sm:py-8 bg-white justify-between items-center border-b-2 fixed top-0 left-0 w-full z-20 flex-wrap gap-4">
