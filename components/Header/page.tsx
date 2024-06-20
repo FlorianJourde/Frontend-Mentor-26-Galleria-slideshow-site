@@ -8,6 +8,9 @@ import React, { useContext, useEffect, useState } from 'react'
 import { usePathname, useRouter } from 'next/navigation';
 import convertToSlug from '@/utils/convertToSlug';
 import { motion, AnimatePresence } from 'framer-motion'
+// import transition from '@/utils/transitions';
+
+// export default transition(function Header() {
 
 export default function Header() {
   const [slideshow, setSlideshow] = useState<boolean>(false)
@@ -53,6 +56,8 @@ export default function Header() {
     <header className="flex py-5 sm:py-8 bg-white justify-between items-center border-b-2 fixed top-0 left-0 w-full z-20 flex-wrap gap-4">
       <div className="wrapper">
 
+        {/* <h1>Test</h1> */}
+
         <AnimatePresence>
           <motion.div
             initial={{ x: -10, opacity: 0 }}
@@ -80,3 +85,4 @@ export default function Header() {
     </header>
   )
 }
+// })

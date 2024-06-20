@@ -1,5 +1,6 @@
 import React from 'react'
 import Artwork from '@/components/Artwork/page';
+import { AnimatePresence, motion } from 'framer-motion';
 
 export function generateStaticParams() {
   return [
@@ -22,9 +23,32 @@ export function generateStaticParams() {
 }
 
 export default function Page() {
+
+  const variants = {
+    hidden: { scaleX: 0, scaleY: 0 },
+    enter: { scaleX: 1, scaleY: 1 },
+    // hidden: { opacity: 0, x: 0, y: 0 },
+    // enter: { opacity: 1, x: 0, y: 0 },
+  }
+
   return (
-    <div>
+    // <div>
+
+    <>
+      {/* <AnimatePresence mode='wait'>
+        <motion.div
+          variants={variants}
+          initial="hidden"
+          exit="hidden"
+          animate="enter"
+          key={'artwork'}> */}
+      {/* {children} */}
+
       <Artwork />
-    </div>
+      {/* </motion.div> */}
+      {/* </AnimatePresence> */}
+    </>
+
+    // </div>
   )
 }
