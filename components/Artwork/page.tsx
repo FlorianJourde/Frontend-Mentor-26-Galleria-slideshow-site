@@ -158,7 +158,7 @@ export default function Artwork() {
                     animate={{ x: 0, opacity: 1 }}
                     exit={{ x: 10, opacity: 0 }}
                     transition={{ delay: 1.2, duration: .8 }}
-                    className='md:self-start xl:self-end md:justify-self-end xl:justify-self-start md:pt-0 xl:p-10 xl:-mb-24 max-w-20 md:max-w-full' src={`..${artistImagePath}`}
+                    className='md:self-start xl:self-end md:justify-self-end xl:justify-self-start pt-5 sm:pt-0 xl:p-10 xl:-mb-24 max-w-20 md:max-w-full' src={`..${artistImagePath}`}
                     alt="" />
                 </AnimatePresence>
 
