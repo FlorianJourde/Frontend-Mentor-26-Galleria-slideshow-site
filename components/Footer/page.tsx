@@ -13,7 +13,7 @@ export default function Footer() {
   const slug = useContext(SlugContext);
   const pageId = artworks.findIndex(artwork => convertToSlug(artwork.name) === slug);
   // let currentPageId: number = 0
-  const [currentPageId, setCurrentPageId] = useState<number | null>(null)
+  const [currentPageId, setCurrentPageId] = useState < number | null > (null)
   // let currentPageId: number | null = null
   // const [currentPageId, setCurrentPageId] = useState<number | null>(null)
   const pathname = usePathname()
@@ -25,6 +25,13 @@ export default function Footer() {
   // } else {
   //   currentPageId = 0
   // }
+
+  // console.log(artworks);
+  // artworks.map((artwork) => {
+  //   // console.log(artwork);
+  //   console.log(artwork.name);
+  //   console.log(convertToSlug(artwork.name));
+  // })
 
   useEffect(() => {
     if (typeof pageId === 'number' && pageId >= 0) {
@@ -69,26 +76,26 @@ export default function Footer() {
 
           <div className="wrapper">
 
-            <div className='flex justify-between items-center gap-5 w-full'>
-              <div className="title w-full overflow-hidden before:content-[''] before:absolute before:right-0 before:top-0 before:h-full before:w-8 relative before:bg-gradient-to-r before:from-transparent before:to-white flex flex-col gap-2">
+            <div className='flex justify-between items-center gap-7 w-full'>
+              <div className='title w-full overflow-hidden flex flex-col gap-2'>
 
                 <AnimatePresence mode='wait'>
                   <motion.h2
-                    initial={{ x: -10, opacity: 0 }}
-                    animate={{ x: 0, opacity: 1 }}
-                    exit={{ x: -10, opacity: 0 }}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
                     transition={{ duration: .8 }}
                     key={artworks[currentPageId].name}
-                    className='font-bold md:text-xl font-libre-baskerville whitespace-nowrap'>
+                    className='font-bold md:text-xl font-libre-baskerville before:content-[""] before:absolute before:right-0 before:top-0 before:h-full before:w-8 relative before:bg-gradient-to-r before:from-transparent before:to-white whitespace-nowrap'>
                     {currentPageId !== undefined && artworks[currentPageId].name}
                   </motion.h2>
                 </AnimatePresence>
 
                 <AnimatePresence mode='wait'>
                   <motion.h3
-                    initial={{ x: -10, opacity: 0 }}
-                    animate={{ x: 0, opacity: .5 }}
-                    exit={{ x: -10, opacity: 0 }}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: .5 }}
+                    exit={{ opacity: 0 }}
                     transition={{ delay: .4, duration: .8 }}
                     key={artworks[currentPageId].artist.name}
                     className='opacity-50 font-bold text-xs md:text-sm font-libre-baskerville'>
@@ -100,7 +107,7 @@ export default function Footer() {
 
               {currentPageId !== undefined &&
                 <div
-                  className='buttons-container flex gap-8 md:gap-12'>
+                  className='buttons-container flex gap-8 sm:gap-12'>
 
                   {getPreviousArtwork(currentPageId, artworks)}
                   {getNextArtwork(currentPageId, artworks)}

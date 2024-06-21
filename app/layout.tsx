@@ -6,6 +6,7 @@ import { PageIdProvider } from "@/contexts/SlugContext";
 // import Transition from "@/utils/Transition";
 import { AnimatePresence, motion } from "framer-motion";
 // import Template from "./Template";
+import Template from "./template";
 // import PageAnimatePresence from '@/utils/PageAnimatePresence'
 import { Component } from "react";
 import Footer from "@/components/Footer/page";
@@ -52,7 +53,15 @@ export default function RootLayout({
           {/* <Transition> */}
 
           {/* <AnimatePresence mode="wait"> */}
-          {children}
+          {/* {children} */}
+          <Template>
+            {/* <PageIdProvider> */}
+
+            {children}
+
+            {/* </PageIdProvider> */}
+          </Template>
+          {/* <Template>{children}</Template> */}
 
           {/* <Component {...children} /> */}
 

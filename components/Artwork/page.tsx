@@ -53,8 +53,9 @@ export default function Artwork() {
       // }, 800);
     }
 
+
     // console.log(pathname);
-    console.log(pageId);
+    // console.log(pageId);
 
 
   }, [pageId]);
@@ -70,7 +71,7 @@ export default function Artwork() {
   }
 
   const artwork = artworks[currentPageId]
-  const heroImagePath = resolveImagePath(artworks[currentPageId].images.gallery);
+  const heroImagePath = resolveImagePath(artworks[currentPageId].images.hero.large);
   const artistImagePath = resolveImagePath(artworks[currentPageId].artist.image);
 
   return (
@@ -100,7 +101,7 @@ export default function Artwork() {
             // key={pathname}
             className="artwork flex py-24 pb-40 sm:py-40 lg:pb-60 font-libre-baskerville">
             <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10 md:gap-20 xl:gap-20'>
-              <div className='image-showing relative md:col-span-2 grid md:grid-cols-3 max-h-[600px] md:grid-rows-[minmax(0,_auto)_minmax(0,_1fr)] xl:grid-rows-[repeat(2,_minmax(0,_auto))]'>
+              <div className='image-showing relative md:col-span-2 grid md:grid-cols-3 max-h-[800px] sm:max-h-[800px] md:max-h-[600px] md:grid-rows-[minmax(0,_auto)_minmax(0,_1fr)] xl:grid-rows-[repeat(2,_minmax(0,_auto))]'>
 
                 <AnimatePresence mode='wait'>
 
@@ -112,7 +113,7 @@ export default function Artwork() {
                     key={pageId}
                     className='w-full h-full overflow-hidden md:col-span-2 md:row-span-2'
                   >
-                    <Image height={0} width={0} sizes="100vw" className='w-full h-full  object-cover' alt='' src={`..${heroImagePath}`} />
+                    <Image height={0} width={0} sizes="100vw" className='w-full h-full object-cover md:object-contain md:object-left' alt='' src={`..${heroImagePath}`} />
 
                   </motion.div>
 
@@ -180,11 +181,11 @@ export default function Artwork() {
 
                 <AnimatePresence>
                   <motion.div
-                    initial={{ x: 20, y: '-50%', opacity: 0 }}
+                    initial={{ x: 40, y: '-50%', opacity: 0 }}
                     animate={{ x: 0, y: '-50%', opacity: .05 }}
-                    exit={{ x: 20, y: '-50%', opacity: 0 }}
-                    transition={{ delay: 1.6, duration: 1.6 }}
-                    className="date text-[100px] md:text-[200px] font-bold opacity-5 absolute right-0 md:-left-24 md:right-auto xl:right-0 xl:left-auto -translate-y-2/3 l:translate-x-1/4">{artwork.year}
+                    exit={{ x: 40, y: '-50%', opacity: 0 }}
+                    transition={{ duration: 4 }}
+                    className="date text-[100px] md:text-[200px] font-bold opacity-5 absolute right-0 md:-left-24 md:right-auto xl:right-0 xl:left-auto -translate-y-2/3 l:translate-x-1/4 pointer-events-none">{artwork.year}
                   </motion.div>
                 </AnimatePresence>
 
