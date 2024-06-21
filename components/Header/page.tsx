@@ -58,7 +58,7 @@ export default function Header() {
 
         {/* <h1>Test</h1> */}
 
-        <AnimatePresence>
+        <AnimatePresence mode='wait'>
           <motion.div
             initial={{ x: -10, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
@@ -71,7 +71,7 @@ export default function Header() {
           </motion.div>
         </AnimatePresence>
 
-        <AnimatePresence>
+        <AnimatePresence mode='wait'>
           <motion.button
             initial={{ x: 10, opacity: 0 }}
             animate={{ x: 0, opacity: .5 }}

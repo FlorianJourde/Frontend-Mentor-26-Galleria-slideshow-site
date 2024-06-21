@@ -141,7 +141,7 @@ export default function Artwork() {
                   className='w-full h-full max-h-[600px] lg:max-h-[800px] object-cover md:col-span-2 md:row-span-2 max-w-full' src={`..${heroImagePath}`} alt="" /> */}
 
 
-                <AnimatePresence>
+                <AnimatePresence mode='wait'>
                   <motion.div
                     initial={{ x: -10, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
@@ -153,7 +153,7 @@ export default function Artwork() {
                   </motion.div>
                 </AnimatePresence>
 
-                <AnimatePresence>
+                <AnimatePresence mode='wait'>
                   <motion.img
                     initial={{ x: 10, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
@@ -163,7 +163,7 @@ export default function Artwork() {
                     alt="" />
                 </AnimatePresence>
 
-                <AnimatePresence>
+                <AnimatePresence mode='wait'>
                   <motion.button
                     initial={{ x: -10, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
@@ -179,7 +179,7 @@ export default function Artwork() {
 
               <div className="details md:col-span-2 xl:col-auto flex flex-col self-center relative md:mx-24 xl:mx-auto xl:mt-40">
 
-                <AnimatePresence>
+                <AnimatePresence mode='wait'>
                   <motion.div
                     initial={{ x: 40, y: '-50%', opacity: 0 }}
                     animate={{ x: 0, y: '-50%', opacity: .05 }}
@@ -189,7 +189,7 @@ export default function Artwork() {
                   </motion.div>
                 </AnimatePresence>
 
-                <AnimatePresence>
+                <AnimatePresence mode='wait'>
                   <motion.p
                     initial={{ x: 10, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
@@ -198,7 +198,7 @@ export default function Artwork() {
                     className='grow leading-8 text-gray-600'>{artwork.description}</motion.p>
                 </AnimatePresence>
 
-                <AnimatePresence>
+                <AnimatePresence mode='wait'>
                   <motion.a
                     initial={{ x: 10, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
