@@ -39,7 +39,7 @@ export default function Portfolio() {
                     animate={{ x: 0, opacity: 1 }}
                     exit={{ x: -10, opacity: 0 }}
                     transition={{ delay: index * .1, duration: .8 }}
-                    key={`${convertToSlug(artwork.name)}`}
+                    key={artwork.name}
                     className="artwork relative mb-5 sm:mb-10"
                   >
                     <Link className="flex flex-col p-5 justify-end absolute bottom-0 text-white h-full w-full before:content-[''] before:top-0 before:absolute before:left-0 before:w-full before:h-full before:bg-[linear-gradient(360deg,_black,_transparent_50%)] before:z-0 [&>*]:z-10" href={{
