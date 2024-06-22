@@ -147,6 +147,7 @@ export default function Artwork() {
                     animate={{ x: 0, opacity: 1 }}
                     exit={{ x: -10, opacity: 0 }}
                     transition={{ delay: .4, duration: .8 }}
+                    key={pageId}
                     className="image-title self-start p-5 sm:p-12 md:pr-0 md:pt-0 mr-12 xs:mr-24 sm:mr-32 md:mr-0 -mt-24 md:-mt-0 md:-ml-40 xl:-ml-40 bg-white">
                     <h1 className='text-2xl sm:text-4xl md:text-6xl break-words font-bold'>{artwork.name}</h1>
                     <h2 className='pt-3 xl:pt-10 opacity-50'>{artwork.artist.name}</h2>
@@ -159,6 +160,7 @@ export default function Artwork() {
                     animate={{ x: 0, opacity: 1 }}
                     exit={{ x: 10, opacity: 0 }}
                     transition={{ delay: 1.2, duration: .8 }}
+                    key={pageId}
                     className='md:self-start xl:self-end md:justify-self-end xl:justify-self-start pt-5 sm:pt-0 xl:p-10 xl:-mb-24 max-w-20 md:max-w-full' src={`..${artistImagePath}`}
                     alt="" />
                 </AnimatePresence>
@@ -169,6 +171,7 @@ export default function Artwork() {
                     animate={{ x: 0, opacity: 1 }}
                     exit={{ x: -10, opacity: 0 }}
                     transition={{ delay: 1.6, duration: .8 }}
+                    key={pageId}
                     onClick={() => setLightbox(lightbox => !lightbox)} className='text-white uppercase font-bold tracking-widest text- bg-black absolute top-5 right-5 md:right-auto md:top-auto md:bottom-5 md:left-5 py-3 px-6 md:py-4 md:px-8 flex text-xs gap-4 md:gap-6 items-center justify-center'>
                     <ViewIcon /> View Image
                   </motion.button>
@@ -185,6 +188,7 @@ export default function Artwork() {
                     animate={{ x: 0, y: '-50%', opacity: .05 }}
                     exit={{ x: 40, y: '-50%', opacity: 0 }}
                     transition={{ duration: 4 }}
+                    key={pageId}
                     className="date text-[100px] md:text-[200px] font-bold opacity-5 absolute right-0 md:-left-24 md:right-auto xl:right-0 xl:left-auto -translate-y-2/3 l:translate-x-1/4 pointer-events-none">{artwork.year}
                   </motion.div>
                 </AnimatePresence>
@@ -195,6 +199,7 @@ export default function Artwork() {
                     animate={{ x: 0, opacity: 1 }}
                     exit={{ x: 10, opacity: 0 }}
                     transition={{ delay: .8, duration: .8 }}
+                    key={pageId}
                     className='grow leading-8 text-gray-600'>{artwork.description}</motion.p>
                 </AnimatePresence>
 
@@ -204,6 +209,7 @@ export default function Artwork() {
                     animate={{ x: 0, opacity: 1 }}
                     exit={{ x: 10, opacity: 0 }}
                     transition={{ delay: 1.6, duration: .8 }}
+                    key={pageId}
                     target="_blank" className='pt-20 uppercase opacity-50 font-bold tracking-widest text-xs underline' href={artwork.source}>Go to source
                   </motion.a>
                 </AnimatePresence>
