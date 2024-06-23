@@ -124,7 +124,7 @@ export default function Artwork() {
                     exit={{ x: 10, opacity: 0 }}
                     transition={{ delay: 1.6, duration: .8 }}
                     key={pageId}
-                    target="_blank" className='pt-20 uppercase opacity-50 font-bold tracking-widest text-xs underline' href={artwork.source}>Go to source
+                    target="_blank" className='pt-10 md:pt-20 uppercase opacity-50 font-bold tracking-widest text-xs underline' href={artwork.source}>Go to source
                   </motion.a>
                 </AnimatePresence>
 

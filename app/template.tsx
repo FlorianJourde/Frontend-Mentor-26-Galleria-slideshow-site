@@ -24,7 +24,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
 
   return (
     <>
-      <AnimatePresence mode={'popLayout'} initial={false}>
+      <AnimatePresence mode={'wait'} initial={false}>
         <motion.div
           key={pathname}
           initial={{ opacity: 0 }}
