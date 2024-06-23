@@ -12,40 +12,14 @@ import { usePathname } from 'next/navigation';
 export default function Footer() {
   const slug = useContext(SlugContext);
   const pageId = artworks.findIndex(artwork => convertToSlug(artwork.name) === slug);
-  // let currentPageId: number = 0
-  const [currentPageId, setCurrentPageId] = useState < number | null > (null)
-  // let currentPageId: number | null = null
-  // const [currentPageId, setCurrentPageId] = useState<number | null>(null)
+  const [currentPageId, setCurrentPageId] = useState<number | null>(null)
   const pathname = usePathname()
-  // console.log(usePathname());
-
-
-  // if (typeof pageId === 'number' && pageId >= 0) {
-  //   currentPageId = pageId
-  // } else {
-  //   currentPageId = 0
-  // }
-
-  // console.log(artworks);
-  // artworks.map((artwork) => {
-  //   // console.log(artwork);
-  //   console.log(artwork.name);
-  //   console.log(convertToSlug(artwork.name));
-  // })
 
   useEffect(() => {
     if (typeof pageId === 'number' && pageId >= 0) {
       setCurrentPageId(pageId)
     }
-
-
-    // if (typeof pageId === 'number' && pageId >= 0) {
-    //   currentPageId = pageId
-    // } else {
-    //   currentPageId = null
-    // }
   }, [pageId]);
-
 
   if (currentPageId === null) {
     return null;

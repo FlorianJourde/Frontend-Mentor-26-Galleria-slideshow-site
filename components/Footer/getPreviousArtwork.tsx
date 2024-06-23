@@ -13,7 +13,6 @@ export default function getPreviousArtwork(currentPageId: any, artworks: Array<a
           href={{
             pathname: `/artworks/${convertToSlug(artworks[previousArtwork].name)}`,
           }}>
-          {/* <BackButtonLogo className="w-5 sm:w-7" /> */}
 
           {getBackButton()}
 
@@ -26,7 +25,6 @@ export default function getPreviousArtwork(currentPageId: any, artworks: Array<a
             pathname: `/artworks/${convertToSlug(artworks[lastArtwork].name)}`,
           }}>
 
-          {/* {backButton()} */}
           {getBackButton()}
 
         </Link>

@@ -22,52 +22,19 @@ export default function Artwork() {
   const [lightbox, setLightbox] = useState<boolean>(false)
   const [currentPageId, setCurrentPageId] = useState<number | null>(null)
   const slug = useContext(SlugContext);
-  const pathname = usePathname()
-  // let currentPageId: number
   const pageId = artworks.findIndex(artwork => convertToSlug(artwork.name) === slug);
-
-
-  const variants = {
-    hidden: { scaleX: 0, scaleY: 0 },
-    enter: { scaleX: 1, scaleY: 1 },
-    // hidden: { opacity: 0, x: 0, y: 0 },
-    // enter: { opacity: 1, x: 0, y: 0 },
-  }
-
-
-  // console.log(pageId);
-
-  // if (typeof pageId === 'number' && pageId >= 0) {
-  //   currentPageId = pageId
-  // } else {
-  //   currentPageId = 0
-  // }
-
 
   useEffect(() => {
     if (typeof pageId === 'number' && pageId >= 0) {
-      // setTimeout(function() {
-      // setCurrentPageId(pageId)
       setCurrentPageId(pageId)
-      //your code to be executed after 1 second
-      // }, 800);
     }
-
-
-    // console.log(pathname);
-    // console.log(pageId);
-
 
   }, [pageId]);
 
-
   if (currentPageId === null) {
-    // setTimeout(function() {
 
     return null;
-    // setCurrentPageId(pageId)
     //your code to be executed after 1 second
-    // }, 800);
   }
 
   const artwork = artworks[currentPageId]
@@ -75,36 +42,14 @@ export default function Artwork() {
   const artistImagePath = resolveImagePath(artworks[currentPageId].artist.image);
 
   return (
-
     <>
-      {/* <AnimatePresence mode='wait'>
-        <motion.div
-
-          initial={{ x: -10, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          exit={{ x: -10, opacity: 0 }}
-          transition={{ duration: .8 }}
-          key={pageId}
-        > */}
-
       <div className='overflow-x-hidden'>
         <div className="wrapper">
-
-
-          {/* <AnimatePresence mode='wait'> */}
-          {/* <motion.div */}
-          <div
-            // variants={variants}
-            // initial="hidden"
-            // exit="hidden"
-            // animate="enter"
-            // key={pathname}
-            className="artwork flex py-24 pb-40 sm:py-40 lg:pb-60 font-libre-baskerville">
+          <div className="artwork flex py-24 pb-40 sm:py-40 lg:pb-60 font-libre-baskerville">
             <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10 md:gap-20 xl:gap-20'>
               <div className='image-showing relative md:col-span-2 grid md:grid-cols-3 max-h-[800px] sm:max-h-[800px] md:max-h-[600px] md:grid-rows-[minmax(0,_auto)_minmax(0,_1fr)] xl:grid-rows-[repeat(2,_minmax(0,_auto))]'>
 
                 <AnimatePresence mode='wait'>
-
                   <motion.div
                     initial={{ x: -10, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
@@ -114,32 +59,8 @@ export default function Artwork() {
                     className='w-full h-full overflow-hidden md:col-span-2 md:row-span-2'
                   >
                     <Image height={0} width={0} sizes="100vw" className='w-full h-full object-cover md:object-contain md:object-left' alt='' src={`..${heroImagePath}`} />
-
                   </motion.div>
-
                 </AnimatePresence>
-
-                {/* <AnimatePresence mode='wait'>
-
-                <motion.img
-                  // initial={{ x: -10, opacity: 0 }}
-                  // animate={{ x: 0, opacity: 1 }}
-                  // exit={{ x: -10, opacity: 0 }}
-                  // transition={{ delay: .4, duration: .8 }}
-                  // key={pathname}
-                  key={pageId}
-
-                  className='w-full h-full max-h-[600px] lg:max-h-[800px] object-cover md:col-span-2 md:row-span-2 max-w-full' src={`..${heroImagePath}`} alt="" />
-              </AnimatePresence> */}
-
-
-                {/* <motion.img
-                  initial={{ x: -10, opacity: 0 }}
-                  animate={{ x: 0, opacity: 1 }}
-                  exit={{ x: -10, opacity: 0 }}
-                  transition={{ duration: .8 }}
-                  className='w-full h-full max-h-[600px] lg:max-h-[800px] object-cover md:col-span-2 md:row-span-2 max-w-full' src={`..${heroImagePath}`} alt="" /> */}
-
 
                 <AnimatePresence mode='wait'>
                   <motion.div
@@ -178,6 +99,7 @@ export default function Artwork() {
                 </AnimatePresence>
 
                 <Lightbox heroImagePath={heroImagePath} lightbox={lightbox} setLightbox={setLightbox} />
+
               </div>
 
               <div className="details md:col-span-2 xl:col-auto flex flex-col self-center relative md:mx-24 xl:mx-auto xl:mt-40">
@@ -215,24 +137,10 @@ export default function Artwork() {
                 </AnimatePresence>
 
               </div>
-
             </div>
-            {/* </div> */}
-
           </div>
-          {/* </AnimatePresence> */}
-          {/* </> */}
-
         </div>
       </div>
-
-
-      {/* </motion.div> */}
-
-      {/* </AnimatePresence> */}
     </>
   )
-  // })
 }
-
-// export default transition(Artwork)

@@ -13,9 +13,9 @@ export default function getNextArtwork(currentPageId: any, artworks: Array<any>)
           href={{
             pathname: `/artworks/${convertToSlug(artworks[nextArtwork].name)}`,
           }}>
-          {/* <NextButtonLogo className="w-5 md:w-7" /> */}
 
           {getNextButton()}
+
         </Link>
       )
     } else {
@@ -24,9 +24,9 @@ export default function getNextArtwork(currentPageId: any, artworks: Array<any>)
           href={{
             pathname: `/artworks/${convertToSlug(artworks[firstArtwork].name)}`,
           }}>
-          {/* <NextButtonLogo className="w-5 md:w-7" /> */}
 
           {getNextButton()}
+
         </Link>
       )
     }
