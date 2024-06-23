@@ -3,26 +3,20 @@
 import React, { useContext, useEffect, useState } from 'react'
 import artworks from "@/data/data.json";
 import resolveImagePath from '@/utils/resolveImagePath';
-import Footer from '../Footer/page';
 import { SlugContext } from '@/contexts/SlugContext'
 import Lightbox from './Lightbox';
 import ViewIcon from '@/public/assets/shared/icon-view-image.svg'
 import { motion, AnimatePresence } from 'framer-motion'
 import convertToSlug from '@/utils/convertToSlug';
 import Image from 'next/image';
-import { usePathname } from 'next/navigation';
-// import transition from '@/utils/transitions';
-// import transition from '@/utils/Transition';
-// import Transition from '@/utils/Transition';
+import useMediaQuery from '@/utils/useMediaQuery';
 
 export default function Artwork() {
-  // export default Transition(function Artwork() {
-  // export default transition(Artwork) = () => {
-  // const Artwork = () => {
   const [lightbox, setLightbox] = useState<boolean>(false)
   const [currentPageId, setCurrentPageId] = useState<number | null>(null)
   const slug = useContext(SlugContext);
   const pageId = artworks.findIndex(artwork => convertToSlug(artwork.name) === slug);
+  let isSmall = useMediaQuery('(min-width: 768px)')
 
   useEffect(() => {
     if (typeof pageId === 'number' && pageId >= 0) {
@@ -32,9 +26,7 @@ export default function Artwork() {
   }, [pageId]);
 
   if (currentPageId === null) {
-
     return null;
-    //your code to be executed after 1 second
   }
 
   const artwork = artworks[currentPageId]
@@ -51,9 +43,9 @@ export default function Artwork() {
 
                 <AnimatePresence mode='wait'>
                   <motion.div
-                    initial={{ x: -10, opacity: 0 }}
+                    initial={{ x: isSmall ? -10 : 0, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
-                    exit={{ x: -10, opacity: 0 }}
+                    exit={{ x: isSmall ? -10 : 0, opacity: 0 }}
                     transition={{ duration: .8 }}
                     key={pageId}
                     className='w-full h-full overflow-hidden md:col-span-2 md:row-span-2'
