@@ -43,7 +43,7 @@ export default function Footer() {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 10, opacity: 0 }}
           transition={{ duration: .8 }}
-          className='fixed w-full bg-white bottom-0 flex py-5 lg:py-8 justify-between items-center border-t-2 backdrop-blur-md bg-[hsla(0,_0%,_100%,_.8)]'>
+          className='fixed w-full bottom-0 flex py-5 lg:py-8 justify-between items-center border-t-2 backdrop-blur bg-[hsla(0,_0%,_100%,_.9)]'>
 
           {progressBar()}
 

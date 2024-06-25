@@ -50,7 +50,7 @@ export default function Header() {
   }, [slideshow, pathname, slug])
 
   return (
-    <header className="flex py-5 sm:py-8 bg-white justify-between items-center border-b-2 fixed top-0 left-0 w-full z-20 flex-wrap gap-4 backdrop-blur-md bg-[hsla(0,_0%,_100%,_.8)]">
+    <header className="flex py-5 sm:py-8 justify-between items-center border-b-2 fixed top-0 left-0 w-full z-20 flex-wrap gap-4 backdrop-blur bg-[hsla(0,_0%,_100%,_.9)]">
       <div className="wrapper">
 
         <AnimatePresence mode='wait'>
